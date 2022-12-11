@@ -23,6 +23,7 @@ plt.style.use('seaborn')
 fig, ax = plt.subplots()
 ax.plot(dates, highs, c='red')
 ax.plot(dates, lows, c='blue')
+plt.fill_between(dates, highs, lows, facecolor='blue', alpha=0.1)
 
 plt.title("Daily high and low temperature - 2018", fontsize=24)
 plt.xlabel('', fontsize=16)
