@@ -3,7 +3,7 @@ from datetime import datetime
 
 import matplotlib.pyplot as plt
 
-filename = 'data/sitka_weather_2018_simple.csv'
+filename = 'data/death_valley_2018_simple.csv'
 with open(filename) as f:
     reader = csv.reader(f)
     header_row = next(reader)
@@ -13,11 +13,15 @@ with open(filename) as f:
 
     for row in reader:
         current_date = datetime.strptime(row[2], '%Y-%m-%d')
-        high = int(row[5])
-        low = int(row[6])
-        dates.append(current_date)
-        highs.append(high)
-        lows.append(low)
+        try:
+            high = int(row[5])
+            low = int(row[6])
+        except ValueError:
+            print(f"Missing data for {current_date}")
+        else:
+            dates.append(current_date)
+            highs.append(high)
+            lows.append(low)
 
 plt.style.use('seaborn')
 fig, ax = plt.subplots()
